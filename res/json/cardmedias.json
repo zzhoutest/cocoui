@@ -1,0 +1,42 @@
+{
+    "image_coco_medium": {
+        "mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco-full.jpg",
+        "mediaContentType": "image/jpeg",
+        "mediaFileSize": 330575,
+        "thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+        "thumbnailContentType": "image/jpeg",
+        "thumbnailFileSize": 11041,
+        "height": "MEDIUM_HEIGHT",
+        "contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+    },
+    "gif_coco_medium": {
+        "mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.gif",
+        "mediaContentType": "image/gif",
+        "mediaFileSize": 34296,
+        "thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.gif",
+        "thumbnailContentType": "image/jpeg",
+        "thumbnailFileSize": 11041,
+        "height": "MEDIUM_HEIGHT",
+        "contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+    },
+    "audio_coco_medium": {
+        "mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.mp3",
+        "mediaContentType": "audio/mp3",
+        "mediaFileSize": 81264,
+        "thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+        "thumbnailContentType": "image/jpeg",
+        "thumbnailFileSize": 11041,
+        "height": "MEDIUM_HEIGHT",
+        "contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+    },
+    "video_coco_medium": {
+        "mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.mp4",
+        "mediaContentType": "video/mp4",
+        "mediaFileSize": 1554140,
+        "thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+        "thumbnailContentType": "image/jpeg",
+        "thumbnailFileSize": 11041,
+        "height": "MEDIUM_HEIGHT",
+        "contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+    }
+}

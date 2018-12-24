@@ -1,0 +1,25 @@
+{
+  "name": "samsungbotbuilder",
+  "version": "1.0.0",
+  "description": "Build ChatBot with Samsung",
+  "main": "ssbotbuilder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "*",
+    "request": "*",
+    "crypto": "*",
+    "cors": "*",
+    "body-parser": "*",
+    "machina":"*",
+    "backoff":"*"
+  },
+  "keywords": [
+    "Samsung",
+    "ChatBot",
+    "MAAP"
+  ],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,32 @@
+{
+    "image_coco": {
+        "thumbnailFileName": "coco.jpg",
+        "thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+        "thumbnailMIMEType": "image/jpeg",
+        "thumbnailFileSize": 11041,
+        "fileName": "coco-full.jpg",
+        "fileUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco-full.jpg",
+        "fileMIMEType": "image/jpeg",
+        "fileSize": 330575
+    },
+    "audio_coco": {
+        "thumbnailFileName": "coco.jpg",
+        "thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+        "thumbnailMIMEType": "image/jpeg",
+        "thumbnailFileSize": 11041,
+        "fileName": "coco.mp3",
+        "fileUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.mp3",
+        "fileMIMEType": "audio/mp3",
+        "fileSize": 81264
+    },
+    "video_coco": {
+        "thumbnailFileName": "coco.jpg",
+        "thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+        "thumbnailMIMEType": "image/jpeg",
+        "thumbnailFileSize": 11041,
+        "fileName": "coco.mp4",
+        "fileUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.mp4",
+        "fileMIMEType": "video/mp4",
+        "fileSize": 1554140
+    }
+}

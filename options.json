@@ -1,0 +1,16 @@
+{
+    "botID": "sdZl3desTLihNrBBYAT6og",
+    "accesstoken": "tPpNMsOonAWK2kvWLkNpt_jYW5xiJHe-bMku8qbOPkU",
+    "verificationtoken": "WRGkqVafYS52kkuUEXscbu6mFg4Hth7E5x3JmnZ6pFk",
+    "botservice": "botplatform.maaprcs.com",
+    "apipath": "/bot/v1/",
+    "clientconfig": {
+      "scheme": "https",
+      "connpoolsize": 10
+    },
+    "serverconfig": {
+      "scheme": "http",                  
+      "port": 3302,       
+      "webhook": "/prod/att/cocoui/callback"
+    }
+}

@@ -1,0 +1,215 @@
+{      
+    "start_over": {
+        "reply": {
+            "displayText": "\uD83D\uDDFDStart Over",
+            "postback": {
+                "data": "reply_start_over"
+            }
+        }
+    },
+    "open_url": {
+        "action": {
+            "urlAction": {
+              "openUrl": {
+                "url": "https://en.wikipedia.org/wiki/Maltese_dog"
+              }
+            },
+            "displayText": "\u2638Open website",
+            "postback": {
+              "data": "reply_openUrl_action"
+            }
+        } 
+    },
+    "keyline": {
+        "action": {
+            "urlAction": {
+              "openUrl": {
+                "url": "https://play.google.com/store/apps/details?id=com.faizmalkani.keylines&hl=en"
+              }
+            },
+            "displayText": "\u2638Download Keyline Pushing",
+            "postback": {
+              "data": "reply_keyline_action"
+            }
+        } 
+    },
+    "dial_PhoneNumber": {
+        "action": {
+            "dialerAction": {
+              "dialPhoneNumber": {
+                "phoneNumber": "+18773409024",
+                "fallbackUrl": "http://www.samsung.com/global/galaxy/apps/galaxy-apps/"
+              }              
+            },
+            "displayText": "\uD83D\uDCE0Call a phone number",
+            "postback": {
+              "data": "reply_dialPhoneNumber_action"
+            }
+        } 
+    },
+    "dial_EnrichedCall": {
+        "action": {
+            "dialerAction": {
+              "dialEnrichedCall": {
+                "phoneNumber": "+18773409024",
+                "subject": "The optional subject for the enriched call",
+                "fallbackUrl": "http://www.samsung.com/global/galaxy/apps/galaxy-apps/"
+              }              
+            },
+            "displayText": "\uD83D\uDCE0Start enriched call",
+            "postback": {
+              "data": "reply_dialEnrichedCall_action"
+            }
+        } 
+    },
+    "dial_VideoCall": {
+        "action": {
+            "dialerAction": {
+              "dialVideoCall": {
+                "phoneNumber": "+18773409024",
+                "fallbackUrl": "http://www.samsung.com/global/galaxy/apps/galaxy-apps/"
+              }              
+            },
+            "displayText": "\uD83D\uDCE0Start video call",
+            "postback": {
+              "data": "reply_dialVideoCall_action"
+            }
+        } 
+    },
+    "show_Location": {
+        "action": {
+            "mapAction": {
+              "showLocation": {
+                "location": {
+                    "latitude":"37.4220041",
+                    "longitude":"-122.0862515",
+                    "label":"Googleplex"
+                },
+                "fallbackUrl": "https://www.google.com/maps/@37.4219162,-122.078063,15z"
+              }
+            },
+            "displayText": "\uD83D\uDDFAShow location on a map",
+            "postback": {
+              "data": "reply_showLocation_action"
+            }
+        } 
+    },
+    "show_Location_with_Query": {
+        "action": {
+            "mapAction": {
+              "showLocation": {
+                "location": {
+                    "query":"restaurants"
+                },
+                "fallbackUrl": "https://www.google.com/maps/search/restaurants"
+              }
+            },
+            "displayText": "\uD83D\uDDFASearch location(s) on map",
+            "postback": {
+              "data": "reply_showLocationWithQuery_action"
+            }
+        } 
+    },
+    "request_Location_Push": {
+        "action": {
+            "mapAction": {
+              "requestLocationPush": {}
+            },
+            "displayText": "\uD83D\uDDFARequest share your location",
+            "postback": {
+              "data": "reply_requestLocationPush_action"
+            }
+        } 
+    },
+    "create_Calendar_Event": {
+        "action": {
+            "calendarAction": {
+                "createCalendarEvent": {
+                    "startTime": "2017-12-25T00:00:00Z",
+                    "endTime": "2017-12-25T23:59:59Z",
+                    "title": "Party",
+                    "description": "Christmas Party"
+                }
+            },
+            "displayText": "\uD83D\uDCC5Schedule an event",
+            "postback": {
+              "data": "reply_createCalendarEvent_action"
+            }
+        } 
+    },
+    "compose_Text_Message": {
+        "action": {
+            "composeAction": {
+                "composeTextMessage": {
+                    "phoneNumber": "+1650253000",
+                    "text": "Draft to go into the send message text field."         
+                }
+            },
+            "displayText": "\uD83D\uDCE7Draft a text message",
+            "postback": {
+              "data": "reply_composeTextMessage_action"
+            }
+        } 
+    },
+    "compose_Recording_Video_Message": {
+        "action": {
+            "composeAction": {
+                "composeRecordingMessage": {
+                    "phoneNumber": "+1650253000",
+                    "type": "VIDEO"
+                }
+            },
+            "displayText": "\uD83D\uDCE7Record video and send",
+            "postback": {
+              "data": "reply_composeRecordingVideoMessage_action"
+            }
+        } 
+    },
+    "compose_Recording_Audio_Message": {
+        "action": {
+            "composeAction": {
+                "composeRecordingMessage": {
+                    "phoneNumber": "+1650253000",
+                    "type": "AUDIO"
+                }
+            },
+            "displayText": "\uD83D\uDCE7Record audio and send",
+            "postback": {
+              "data": "reply_composeRecordingAudioMessage_action"
+            }
+        } 
+    },
+    "request_Device_Specifics": {
+        "action": {
+            "deviceAction": {
+                "requestDeviceSpecifics": {}
+            },
+            "displayText": "\uD83C\uDFE7Request device specifics",
+            "postback": {
+              "data": "reply_requestDeviceSpecifics_action"
+            }
+        } 
+    },
+    "disable_Anonymization": {
+        "action": {
+            "settingsAction": {
+                "disableAnonymization": {}
+            },
+            "displayText": "\uD83D\uDD27Request sharing your phone number",
+            "postback": {
+              "data": "reply_disableAnonymization_action"
+            }
+        } 
+    },
+    "enable_Displayed_Notifications": {
+        "action": {
+            "settingsAction": {
+                "enableDisplayedNotifications": {}
+            },
+            "displayText": "\uD83D\uDD27Request sending read receipts",
+            "postback": {
+              "data": "reply_enableDisplayedNotifications_action"
+            }
+        } 
+    }               
+}
