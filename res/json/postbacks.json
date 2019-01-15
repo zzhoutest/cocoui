@@ -1,12 +1,25 @@
 {
     "start_over": "reply_start_over",
-    "continue_work": "reply_continue_work",
+    "edit_cards": "reply_edit_cards",
     "view_cards": "reply_view_cards",
+    "start_over_yes": "reply_start_over_yes",
+    "start_over_no": "reply_start_over_no",
     "select_card_type": "reply_select_card_type",
     "build_richcard": "reply_build_richcard",
     "build_carousel": "reply_build_carousel",
+    "view_richcard": "reply_view_richcard",
+    "view_carousel": "reply_view_carousel",
+    
     "richcard_layout": "reply_richcard_layout",
     "richCard_content": "reply_richcard_content",
+    "richard_layout_orientation_vertical": "reply_richard_layout_orientation_vertical",
+    "richard_layout_orientation_horizontal_left": "reply_richard_layout_orientation_horizontal_left",
+    "richard_layout_orientation_horizontal_right": "reply_richard_layout_orientation_horizontal_right",
+    "richcard_content_media": "reply_richcard_content_media",
+    "richcard_content_title": "reply_richcard_content_title",
+    "richcard_content_description": "reply_richcard_content_description",
+    "richcard_content_suggestions": "reply_richcard_content_suggestions",
+
 
     "test_10776": "reply_test_10776",
     "test_advanced": "reply_test_advanced",

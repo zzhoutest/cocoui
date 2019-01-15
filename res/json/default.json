@@ -1,0 +1,362 @@
+{
+	"richcard": {
+		"RCSMessage": {
+			"richcardMessage": {
+				"message": {
+					"generalPurposeCard": {
+						"layout": {
+							"cardOrientation": "HORIZONTAL",
+							"imageAlignment": "LEFT"
+						},
+						"content": {
+							"media": {
+								"mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco-full.jpg",
+								"mediaContentType": "image/jpeg",
+								"mediaFileSize": 330575,
+								"thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+								"thumbnailContentType": "image/jpeg",
+								"thumbnailFileSize": 11041,
+								"height": "MEDIUM_HEIGHT",
+								"contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+							},
+							"title": "This is a single rich card.",
+							"description": "This is the description of the rich card. It's the first field that will be truncated if it exceeds the maximum width or height of a card.",
+							"suggestions": [{
+								"reply": {
+									"displayText": "Yes",
+									"postback": {
+										"data": "set_by_chatbot_reply_Yes"
+									}
+								}
+							},
+							{
+								"reply": {
+									"displayText": "No",
+									"postback": {
+										"data": "set_by_chatbot_reply_no"
+									}
+								}
+							},
+							{
+								"action": {
+									"urlAction": {
+										"openUrl": {
+											"url": "https://www.Samsung.com"
+										}
+									},
+									"displayText": "Open website or deep link",
+									"postback": {
+										"data": "set_by_chatbot_open_url"
+									}
+								}
+							},
+							{
+								"action": {
+									"dialerAction": {
+										"dialPhoneNumber": {
+											"phoneNumber": "+1650253000"
+										}
+									},
+									"displayText": "Call a phone number",
+									"postback": {
+										"data": "set_by_chatbot_open_dialer"
+									}
+								}
+							}]
+						}
+					}
+				}
+			}
+		}
+	},
+	"carousel": {
+		"RCSMessage": {
+			"richcardMessage": {
+				"message": {
+					"generalPurposeCardCarousel": {
+						"layout": {
+							"cardWidth": "MEDIUM_WIDTH"
+						},
+						"content": [{
+							"media": {
+								"mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco-full.jpg",
+								"mediaContentType": "image/jpeg",
+								"mediaFileSize": 330575,
+								"thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+								"thumbnailContentType": "image/jpeg",
+								"thumbnailFileSize": 11041,
+								"height": "MEDIUM_HEIGHT",
+								"contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+							},
+							"title": "This is the first rich card in a carousel.",
+							"description": "This is the description of the rich card. It's the first field that will be truncated if it exceeds the maximum width or height of a card.",
+							"suggestions": [{
+								"action": {
+									"urlAction": {
+										"openUrl": {
+											"url": "https://en.wikipedia.org/wiki/Maltese_dog"
+										}
+									},
+									"displayText": "\u2638Open website",
+									"postback": {
+										"data": "reply_openUrl_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"urlAction": {
+										"openUrl": {
+											"url": "https://play.google.com/store/apps/details?id=com.faizmalkani.keylines&hl=en"
+										}
+									},
+									"displayText": "\u2638Download Keyline Pushing",
+									"postback": {
+										"data": "reply_keyline_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"dialerAction": {
+										"dialPhoneNumber": {
+											"phoneNumber": "+18773409024",
+											"fallbackUrl": "http://www.samsung.com/global/galaxy/apps/galaxy-apps/"
+										}
+									},
+									"displayText": "\uD83D\uDCE0Call a phone number",
+									"postback": {
+										"data": "reply_dialPhoneNumber_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"dialerAction": {
+										"dialEnrichedCall": {
+											"phoneNumber": "+18773409024",
+											"subject": "The optional subject for the enriched call",
+											"fallbackUrl": "http://www.samsung.com/global/galaxy/apps/galaxy-apps/"
+										}
+									},
+									"displayText": "\uD83D\uDCE0Start enriched call",
+									"postback": {
+										"data": "reply_dialEnrichedCall_action"
+									}
+								}
+							}]
+						},
+						{
+							"media": {
+								"mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.gif",
+								"mediaContentType": "image/gif",
+								"mediaFileSize": 34296,
+								"thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.gif",
+								"thumbnailContentType": "image/jpeg",
+								"thumbnailFileSize": 11041,
+								"height": "MEDIUM_HEIGHT",
+								"contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+							},
+							"title": "This is the second rich card in a carousel.",
+							"description": "This is the description of the rich card. It's the first field that will be truncated if it exceeds the maximum width or height of a card.",
+							"suggestions": [{
+								"action": {
+									"dialerAction": {
+										"dialVideoCall": {
+											"phoneNumber": "+18773409024",
+											"fallbackUrl": "http://www.samsung.com/global/galaxy/apps/galaxy-apps/"
+										}
+									},
+									"displayText": "\uD83D\uDCE0Start video call",
+									"postback": {
+										"data": "reply_dialVideoCall_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"mapAction": {
+										"showLocation": {
+											"location": {
+												"latitude": "37.4220041",
+												"longitude": "-122.0862515",
+												"label": "Googleplex"
+											},
+											"fallbackUrl": "https://www.google.com/maps/@37.4219162,-122.078063,15z"
+										}
+									},
+									"displayText": "\uD83D\uDDFAShow location on a map",
+									"postback": {
+										"data": "reply_showLocation_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"mapAction": {
+										"showLocation": {
+											"location": {
+												"query": "restaurants"
+											},
+											"fallbackUrl": "https://www.google.com/maps/search/restaurants"
+										}
+									},
+									"displayText": "\uD83D\uDDFASearch location(s) on map",
+									"postback": {
+										"data": "reply_showLocationWithQuery_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"mapAction": {
+										"requestLocationPush": {
+											
+										}
+									},
+									"displayText": "\uD83D\uDDFARequest share your location",
+									"postback": {
+										"data": "reply_requestLocationPush_action"
+									}
+								}
+							}]
+						},
+						{
+							"media": {
+								"mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.mp3",
+								"mediaContentType": "audio/mp3",
+								"mediaFileSize": 81264,
+								"thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+								"thumbnailContentType": "image/jpeg",
+								"thumbnailFileSize": 11041,
+								"height": "MEDIUM_HEIGHT",
+								"contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+							},
+							"title": "This is the third rich card in a carousel.",
+							"description": "This is the description of the rich card. It's the first field that will be truncated if it exceeds the maximum width or height of a card.",
+							"suggestions": [{
+								"action": {
+									"calendarAction": {
+										"createCalendarEvent": {
+											"startTime": "2017-12-25T00:00:00Z",
+											"endTime": "2017-12-25T23:59:59Z",
+											"title": "Party",
+											"description": "Christmas Party"
+										}
+									},
+									"displayText": "\uD83D\uDCC5Schedule an event",
+									"postback": {
+										"data": "reply_createCalendarEvent_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"composeAction": {
+										"composeTextMessage": {
+											"phoneNumber": "+1650253000",
+											"text": "Draft to go into the send message text field."
+										}
+									},
+									"displayText": "\uD83D\uDCE7Draft a text message",
+									"postback": {
+										"data": "reply_composeTextMessage_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"composeAction": {
+										"composeRecordingMessage": {
+											"phoneNumber": "+1650253000",
+											"type": "VIDEO"
+										}
+									},
+									"displayText": "\uD83D\uDCE7Record video and send",
+									"postback": {
+										"data": "reply_composeRecordingVideoMessage_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"composeAction": {
+										"composeRecordingMessage": {
+											"phoneNumber": "+1650253000",
+											"type": "AUDIO"
+										}
+									},
+									"displayText": "\uD83D\uDCE7Record audio and send",
+									"postback": {
+										"data": "reply_composeRecordingAudioMessage_action"
+									}
+								}
+							}]
+						},
+						{
+							"media": {
+								"mediaUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.mp4",
+								"mediaContentType": "video/mp4",
+								"mediaFileSize": 1554140,
+								"thumbnailUrl": "https://s3-us-west-2.amazonaws.com/maap-coco/coco.jpg",
+								"thumbnailContentType": "image/jpeg",
+								"thumbnailFileSize": 11041,
+								"height": "MEDIUM_HEIGHT",
+								"contentDescription": "Accessiblity text for use with screen readers. Will not be shown on screen."
+							},
+							"title": "This is the fourth rich card in a carousel.",
+							"description": "This is the description of the rich card. It's the first field that will be truncated if it exceeds the maximum width or height of a card.",
+							"suggestions": [{
+								"action": {
+									"deviceAction": {
+										"requestDeviceSpecifics": {
+											
+										}
+									},
+									"displayText": "\uD83C\uDFE7Request device specifics",
+									"postback": {
+										"data": "reply_requestDeviceSpecifics_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"settingsAction": {
+										"disableAnonymization": {
+											
+										}
+									},
+									"displayText": "\uD83D\uDD27Request sharing your phone number",
+									"postback": {
+										"data": "reply_disableAnonymization_action"
+									}
+								}
+							},
+							{
+								"action": {
+									"settingsAction": {
+										"enableDisplayedNotifications": {
+											
+										}
+									},
+									"displayText": "\uD83D\uDD27Request sending read receipts",
+									"postback": {
+										"data": "reply_enableDisplayedNotifications_action"
+									}
+								}
+							},
+							{
+								"reply": {
+									"displayText": "\uD83D\uDDFDStart Over",
+									"postback": {
+										"data": "reply_start_over"
+									}
+								}
+							}]
+						}]
+					}
+				}
+			}
+		}
+	}
+}

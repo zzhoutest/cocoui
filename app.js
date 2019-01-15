@@ -10,6 +10,7 @@ var postbacks = require('./res/json/postbacks.json');
 var files = require('./res/json/files.json');
 var layouts = require('./res/json/layouts.json');
 var cardmedias = require('./res/json/cardmedias.json');
+var defaults = require('./res/json/default.json');
 var sessions = {};
 
 // Set custom logging level for sdk modules ("TRACE", "DEBUG", "INFO", "WARN", "ERROR")
@@ -59,8 +60,8 @@ var onWebhookMessage = function (message) {
   }
 }
 
-var setSession = function(contact, card) {
-  sessions[contact] = card;
+var setSession = function(contact, cards) {
+  sessions[contact] = cards;
 }
 
 var getSession = function(contact) {
@@ -69,7 +70,7 @@ var getSession = function(contact) {
     if (session)
       return session;
     else {
-      setSession(contact, {});
+      setSession(contact, defaults);
       return null;
     }
   } else {
@@ -78,64 +79,182 @@ var getSession = function(contact) {
 }
 
 var handle_event_message = function(message) {
+  ssbot.read(message.RCSMessage.msgId, onResponse);
   var reply;
   if (getSession(message.messageContact.userContact)) {
-    reply = ssbot.newTextMessage(simpletext.hello_old);
-    var r1 = ssbot.newReply(simpletext.view_cards, postbacks.view_cards);
-    var r2 = ssbot.newReply(simpletext.continue_work, postbacks.continue_work);
-    var r3 = ssbot.newReply(simpletext.start_over, postbacks.start_over);
-    var suggestions = ssbot.newSuggestions(r1, r2, r3);
-    reply.RCSMessage.suggestedChipList = ssbot.newSuggestedChipList(suggestions);
-    ssbot.reply(message, reply, onResponse);
+    reply = ssbot.newTextMessage(simpletext.hello_old);  
   } else {
-    handle_reply_start_over(message);
+    reply = ssbot.newTextMessage(simpletext.hello_new);
   }
+  var r1 = ssbot.newReply(simpletext.view_cards, postbacks.view_cards);
+  var r2 = ssbot.newReply(simpletext.edit_cards, postbacks.edit_cards);
+  var r3 = ssbot.newReply(simpletext.start_over, postbacks.start_over);
+  var suggestions = ssbot.newSuggestions(r1, r2, r3);
+  reply.RCSMessage.suggestedChipList = ssbot.newSuggestedChipList(suggestions);
+  ssbot.reply(message, reply, onResponse);
 }
 
 var debugCards = function(cards) {
+  log.debug("********************************");
   log.debug("Cards: " + JSON.stringify(cards));
+  log.debug("********************************");
 }
 
-var handle_reply_start_over = function (message) {
+var handle_reply_view_cards = function (message) {
   ssbot.read(message.RCSMessage.msgId, onResponse);
   var contact = message.messageContact.userContact;
 
-  var pb;
-  if (message.event == "response") {
-    pb = message.RCSMessage.suggestedResponse.response.reply.postback.data;
-  }   
+  var pb = message.RCSMessage.suggestedResponse.response.reply.postback.data;
   var reply, suggestions, r1, r2;
 
-  if (message.event == "message" || pb == postbacks.start_over) {
+  if (pb == postbacks.view_cards) {
+    reply = ssbot.newTextMessage(simpletext.what_to_view);
+    r1 = ssbot.newReply(simpletext.view_richcard, postbacks.view_richcard);
+    r2 = ssbot.newReply(simpletext.view_carousel, postbacks.view_carousel);
+    suggestions = ssbot.newSuggestions(r1, r2);
+    reply.RCSMessage.suggestedChipList = ssbot.newSuggestedChipList(suggestions);
+    ssbot.reply(message, reply, onResponse);
+  } else if (pb == postbacks.view_richcard) {
+    var cards = getSession(contact);
+    if (!cards) cards = defaults;
+    reply = cards.richcard;
+    ssbot.reply(message, reply, onResponse);
+  } else if (pb == postbacks.view_carousel) {
+    var cards = getSession(contact);
+    if (!cards) cards = defaults;
+    reply = cards.carousel;
+    ssbot.reply(message, reply, onResponse);
+  }
+}
+
+var handle_reply_edit_cards = function (message) {
+  ssbot.read(message.RCSMessage.msgId, onResponse);
+  var contact = message.messageContact.userContact;
+
+  var pb = message.RCSMessage.suggestedResponse.response.reply.postback.data;
+  var reply, suggestions, r1, r2;
+
+  var cards = getSession(contact);
+  if (pb == postbacks.edit_cards) {
     reply = ssbot.newTextMessage(simpletext.select_card_type);
     r1 = ssbot.newReply(simpletext.build_richcard, postbacks.build_richcard);
     r2 = ssbot.newReply(simpletext.build_carousel, postbacks.build_carousel);
     suggestions = ssbot.newSuggestions(r1, r2);
     reply.RCSMessage.suggestedChipList = ssbot.newSuggestedChipList(suggestions);
     ssbot.reply(message, reply, onResponse);
-
   } else if (pb == postbacks.build_richcard) {
-    var cards = getSession(contact);
-    if (!cards) cards = {};
-    cards.richcard = ssbot.newGeneralRichCard(null, null);
-    debugCards(cards);
-    setSession(contact, cards);
-    
     reply = ssbot.newTextMessage(simpletext.select_richcard_topic);
     r1 = ssbot.newReply(simpletext.richcard_layout, postbacks.richcard_layout);
     r2 = ssbot.newReply(simpletext.richCard_content, postbacks.richCard_content);
     suggestions = ssbot.newSuggestions(r1, r2);
     reply.RCSMessage.suggestedChipList = ssbot.newSuggestedChipList(suggestions);
     ssbot.reply(message, reply, onResponse);
-    
   } else if (pb == postbacks.build_carousel) {
-    var cards = getSession(contact);
-    if (!cards) cards = {};
-    cards.carousel = ssbot.newGeneralCarousel(null, null);
-    debugCards(cards);
-    setSession(contact, cards);
   }
 }
+
+var handle_reply_start_over = function (message) {
+  ssbot.read(message.RCSMessage.msgId, onResponse);
+  var contact = message.messageContact.userContact;
+
+  var pb = message.RCSMessage.suggestedResponse.response.reply.postback.data;   
+  var reply, suggestions, r1, r2, r3;
+
+  if (pb == postbacks.start_over) {
+    reply = ssbot.newTextMessage(simpletext.start_over_confirm);
+    r1 = ssbot.newReply(simpletext.start_over_yes, postbacks.start_over_yes);
+    r2 = ssbot.newReply(simpletext.start_over_no, postbacks.start_over_no);
+    suggestions = ssbot.newSuggestions(r1, r2);
+    reply.RCSMessage.suggestedChipList = ssbot.newSuggestedChipList(suggestions);
+    ssbot.reply(message, reply, onResponse);
+
+  } else if (pb == postbacks.start_over_yes) {
+    setSession(contact, defaults);
+  } else if (pb == postbacks.start_over_no) {
+    handle_event_message(message);    
+  }
+}
+
+var handle_reply_richcard_layout = function (message) {
+  ssbot.read(message.RCSMessage.msgId, onResponse);
+  var contact = message.messageContact.userContact;
+
+  var pb = message.RCSMessage.suggestedResponse.response.reply.postback.data;
+  var reply, suggestions, r1, r2, r3;
+
+  var cards = getSession(contact);
+  var richcard = cards.richcard;
+  var layout = richcard.RCSMessage.richcardMessage.message.generalPurposeCard.layout;
+  var cardOrientation, imageAlignment;
+  if (layout) {
+    cardOrientation = layout.cardOrientation;
+    imageAlignment = layout.imageAlignment;
+  }
+   
+
+  if (pb == postbacks.richcard_layout) {
+    reply = ssbot.newTextMessage(simpletext.richcard_layout_current + simpletext.richcard_layout_card_orientation + ": " + cardOrientation + " / " + simpletext.richcard_layout_image_alignment + ": " + imageAlignment + ".\r\n\n" + simpletext.richcard_layout_what_orientation);
+    r1 = ssbot.newReply(simpletext.richard_layout_orientation_vertical, postbacks.richard_layout_orientation_vertical);
+    r2 = ssbot.newReply(simpletext.richard_layout_orientation_horizontal_left, postbacks.richard_layout_orientation_horizontal_left);
+    r3 = ssbot.newReply(simpletext.richard_layout_orientation_horizontal_right, postbacks.richard_layout_orientation_horizontal_right);
+    suggestions = ssbot.newSuggestions(r1, r2, r3);
+    reply.RCSMessage.suggestedChipList = ssbot.newSuggestedChipList(suggestions);
+    ssbot.reply(message, reply, onResponse);
+  } else if (pb == postbacks.richard_layout_orientation_vertical) { 
+    cards.richcard.RCSMessage.richcardMessage.message.generalPurposeCard.layout = layouts.general_vertical;
+    debugCards(cards);
+    setSession(contact, cards);
+    handle_event_message(message);
+  } else if (pb == postbacks.richard_layout_orientation_horizontal_left) { 
+    cards.richcard.RCSMessage.richcardMessage.message.generalPurposeCard.layout = layouts.general_horizontal_left;
+    debugCards(cards);
+    setSession(contact, cards);
+    handle_event_message(message);
+  } else if (pb == postbacks.richard_layout_orientation_horizontal_right) { 
+    cards.richcard.RCSMessage.richcardMessage.message.generalPurposeCard.layout = layouts.general_horizontal_right;
+    debugCards(cards);
+    setSession(contact, cards);
+    handle_event_message(message);
+  }
+}
+
+
+var handle_reply_richcard_content = function(message) {
+  ssbot.read(message.RCSMessage.msgId, onResponse);
+
+  var contact = message.messageContact.userContact;
+
+  var pb = message.RCSMessage.suggestedResponse.response.reply.postback.data;
+  var reply, suggestions, r1, r2, r3, r4;
+
+  var cards = getSession(contact);
+  var richcard = cards.richcard;
+  var content = richcard.RCSMessage.richcardMessage.message.generalPurposeCard.content;
+  var media, title, description, suggestions_card;
+  if (content) {
+    media = content.media;
+    title = content.title;
+    description = content.description;
+    suggestions_card = content.suggestions;
+  }
+  
+  if (pb == postbacks.richCard_content) {
+    reply = ssbot.newTextMessage(simpletext.richCard_content_task);
+    r1 = ssbot.newReply(simpletext.richcard_content_media, postbacks.richcard_content_media);
+    r2 = ssbot.newReply(simpletext.richcard_content_title, postbacks.richcard_content_title);
+    r3 = ssbot.newReply(simpletext.richcard_content_description, postbacks.richcard_content_description);
+    r4 = ssbot.newReply(simpletext.richcard_content_suggestions, postbacks.richcard_content_suggestions);
+
+    suggestions = ssbot.newSuggestions(r1, r2, r3, r4);
+    reply.RCSMessage.suggestedChipList = ssbot.newSuggestedChipList(suggestions);
+    ssbot.reply(message, reply, onResponse);
+  }
+}
+
+
+
+
+
 
 
 var handle_reply_advanced = function (message) {
@@ -880,7 +999,7 @@ var handle_reply_richcard_orientation = function(message) {
 
   ssbot.reply(message, reply, onResponse);  
 }
-
+/*
 var handle_reply_richcard_content = function(message) {
   ssbot.read(message.RCSMessage.msgId, onResponse);  
   
@@ -957,7 +1076,8 @@ var handle_reply_richcard_content = function(message) {
 
   ssbot.reply(message, reply, onResponse);  
 }
-
+*/
+/*
 var handle_reply_richcard_layout = function(message) {
   ssbot.read(message.RCSMessage.msgId, onResponse);  
   
@@ -1050,7 +1170,7 @@ var handle_reply_richcard_layout = function(message) {
 
   ssbot.reply(message, reply, onResponse);  
 }
-
+*/
 var handle_reply_richcard_media = function(message) {
   ssbot.read(message.RCSMessage.msgId, onResponse);  
   
@@ -1468,11 +1588,12 @@ var handle_reply_carousel_display = function(message) {
   ssbot.reply(message, reply, onResponse);  
 }
 
-ssbot.handle(['reply_start_over'], 'postback', handle_reply_start_over);
-//ssbot.handle(['reply_view_cards'], 'postback', handle_reply_view_cards);
-//ssbot.handle(['reply_continue_work'], 'postback', handle_reply_continue_work);
-ssbot.handle(['reply_build_richcard'], 'postback', handle_reply_start_over);
-ssbot.handle(['reply_build_carousel'], 'postback', handle_reply_start_over);
+
+ssbot.handle(['reply_start_over','reply_start_over_yes','reply_start_over_no'], 'postback', handle_reply_start_over);
+ssbot.handle(['reply_view_cards', 'reply_view_richcard', 'reply_view_carousel'], 'postback', handle_reply_view_cards);
+ssbot.handle(['reply_edit_cards', 'reply_build_richcard', 'reply_build_carousel'], 'postback', handle_reply_edit_cards);
+ssbot.handle(['reply_richcard_layout', 'reply_richcard_layout_card_orientation', 'reply_richcard_layout_image_alignment', 'reply_richard_layout_orientation_vertical', 'reply_richard_layout_orientation_horizontal_left', 'reply_richard_layout_orientation_horizontal_right'], 'postback', handle_reply_richcard_layout);
+ssbot.handle(['reply_richcard_content'], 'postback', handle_reply_richcard_content);
 
 
 ssbot.handle(['reply_test_advanced'], 'postback', handle_reply_advanced);
