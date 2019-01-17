@@ -60,6 +60,10 @@ var onWebhookMessage = function (message) {
   }
 }
 
+var getDefault = function() {
+  return JSON.parse(fs.readFileSync("res/json/default.json"));
+}
+
 var setSession = function(contact, cards) {
   sessions[contact] = cards;
 }
@@ -69,8 +73,8 @@ var getSession = function(contact) {
     var session = sessions[contact];
     if (session)
       return session;
-    else {
-      setSession(contact, defaults);
+    else {      
+      setSession(contact, getDefault());
       return null;
     }
   } else {
@@ -169,7 +173,7 @@ var handle_reply_start_over = function (message) {
     ssbot.reply(message, reply, onResponse);
 
   } else if (pb == postbacks.start_over_yes) {
-    setSession(contact, defaults);
+    setSession(contact, getDefault());
   } else if (pb == postbacks.start_over_no) {
     handle_event_message(message);    
   }
