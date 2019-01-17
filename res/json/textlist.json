@@ -32,6 +32,12 @@
     "richcard_content_title": "Title",
     "richcard_content_description": "Description",
     "richcard_content_suggestions": "Suggestions",
+    "richcard_content_title_what": "What kind of change to you want to make about the Title?",
+    "richcard_content_title_short": "Short Title",
+    "richcard_content_title_long": "Long Title",
+    "richcard_content_title_remove": "Remove Title",
+    "richcard_content_title_short_txt": "Title",
+    "richcard_content_title_long_txt": "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789",
     
     "hello": "Hello World! I am CoCo!\uD83D\uDC36",
     "default": "\uD83D\uDC36This is CoCo. I am sorry I don't understand what you are just saying: ",    

@@ -19,6 +19,9 @@
     "richcard_content_title": "reply_richcard_content_title",
     "richcard_content_description": "reply_richcard_content_description",
     "richcard_content_suggestions": "reply_richcard_content_suggestions",
+    "richcard_content_title_short": "reply_richcard_content_title_short",
+    "richcard_content_title_long": "reply_richcard_content_title_long",
+    "richcard_content_title_remove": "reply_richcard_content_title_remove",
 
 
     "test_10776": "reply_test_10776",
